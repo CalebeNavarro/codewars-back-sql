@@ -32,10 +32,7 @@ def init_app(app: Flask) -> None:
   from app.views.email_confirm import EmailConfirm
   api.add_resource(EmailConfirm, "/email_confirm/<string:email>")
 
-  from app.views.google_view import GoogleView, CallbackView, Logout, ProtectedArea
+  from app.views.google_view import GoogleView
   api.add_resource(GoogleView, "/google")
-  api.add_resource(CallbackView, "/callback")
-  api.add_resource(Logout, "/logout")
-  api.add_resource(ProtectedArea, "/protected_area")
 
   app.register_blueprint(api_bp)

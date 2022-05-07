@@ -4,3 +4,4 @@ from .users_service import UsersServices
 from .student_service import StudentServices
 from .enabler_service import EnablerServices
 from .honors_service import HonorsServices
+from .google_service import GoogleServices

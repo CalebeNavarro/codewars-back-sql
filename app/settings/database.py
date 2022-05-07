@@ -7,7 +7,11 @@ import os
 load_dotenv()
 Base = declarative_base()
 
-engine = create_engine(os.getenv("DATABASE_URI"), echo=False, future=True)
+if os.getenv("FLASK_ENV") == "development":
+  engine = create_engine(os.getenv("DATABASE_URI_DEVELOPMENT"), echo=False, future=True)
+else:
+  engine = create_engine(os.getenv("DATABASE_URI"), echo=False, future=True)
+
 engine.connect()
 
 session = sessionmaker(
@@ -16,7 +20,7 @@ session = sessionmaker(
     future=True,
 )
 
-aa = Session(bind=engine)
+secondSession = Session(bind=engine)
 
 
 def init_db():

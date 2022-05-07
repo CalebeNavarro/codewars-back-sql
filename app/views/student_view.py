@@ -5,7 +5,7 @@ from sqlalchemy.exc import InvalidRequestError, DataError, IntegrityError
 from app.exceptions import UserNotFound, UsernameNotFound, InvalidEmail
 from psycopg2 import errors
 
-from app.services import StudentServices, UsersServices
+from app.services import StudentServices, UsersServices, GoogleServices
 
 from app.exceptions import FieldNotAllowed, StudentNotFound
 
@@ -22,6 +22,11 @@ class Student(Resource):
     if request.json.get("email_approved", None):
       return {"message": "email_approved is not allowed by user"}, 400
 
+    data_response = GoogleServices.validate_human(data["token"])
+    if not data_response["success"]:
+      return {"message": "Invalid captcha"}
+
+    del data["token"]
     try:
       UsersServices.validate_fields_post(data)
       student_created = StudentServices.create_student(data)
