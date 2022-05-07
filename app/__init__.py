@@ -9,7 +9,7 @@ from itsdangerous import URLSafeSerializer
 
 def create_app():
   app = Flask(__name__)
-  CORS(app, origins=["https://codewars-kenzie-sql.vercel.app"])
+  CORS(app, origins=["https://codewars-kenzie-sql.vercel.app", "http://localhost:3000"])
   app.config["JSON_SORT_KEYS"] = False
 
   init_jwt(app)
