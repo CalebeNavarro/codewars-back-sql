@@ -1,7 +1,6 @@
 import ipdb
 from sqlalchemy import Column, Integer, ForeignKey, select, delete, update
-from sqlalchemy.orm import relationship, joinedload, subqueryload, lazyload
-from typing import List, Optional
+from sqlalchemy.orm import relationship, joinedload
 
 from app.settings.database import Base, session
 

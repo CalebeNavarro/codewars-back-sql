@@ -1,6 +1,3 @@
-from app.settings.database import session
-from sqlalchemy import select, update
-
 from app.models.users_model import User
 from app.models.honor_model import Honor
 
@@ -86,11 +83,6 @@ class UsersServices:
   @staticmethod
   def update_user_by_email(email: str):
     User.update_user_by_email(email)
-
-  @staticmethod
-  def get_student_or_enabler_by_user_id(user_id: int):
-    user = User.get_user_by_user_id(user_id)
-    pass
 
   @classmethod
   def daily_update_honor(cls):
