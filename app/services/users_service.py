@@ -91,3 +91,33 @@ class UsersServices:
   def get_student_or_enabler_by_user_id(user_id: int):
     user = User.get_user_by_user_id(user_id)
     pass
+
+  @classmethod
+  def daily_update_honor(cls):
+    users_list = User.get_all_users()
+    for user in users_list:
+      cls.create_honor_in_all_user(user.id)
+
+  @classmethod
+  def create_honor_in_all_user(cls, user_id: int) -> None:
+    user = User.get_user_by_user_id(user_id)
+
+    if not user:
+      return
+
+    user_api = CodewarsUtil(user.username)
+    user_api.response_by_username()
+    honor = user_api.response.get("honor", None)
+
+    if not honor:
+      return
+
+    honors = User.get_honor_by_user_id(user_id)
+    has_updated = cls.check_honor_already_updated_today(honors)
+
+    if has_updated and honor == user.current_honor:
+      return
+
+    data_user = {"honor": honor, "user_id": user_id}
+    HonorsServices.create_honor_by_user_id(data_user)
+    User.update_user({"current_honor": user_api.response["honor"]}, user_id)

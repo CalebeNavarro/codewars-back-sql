@@ -8,8 +8,9 @@ def init_app(app: Flask) -> None:
   api = Api(api_bp)
 
 
-  from app.views.users_view import UserRetrieveHonorsView
+  from app.views.users_view import UserRetrieveHonorsView, UserView
   api.add_resource(UserRetrieveHonorsView, "/users/<int:user_id>/honors")
+  api.add_resource(UserView, "/users")
 
   from app.views.honors_view import HonorView, HonorRetrieveView
   api.add_resource(HonorView, "/honors")
