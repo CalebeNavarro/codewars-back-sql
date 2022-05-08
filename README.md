@@ -1,4 +1,4 @@
-# [Kenzie Codewars 👾](https://codewars-kenzie-xi.vercel.app/dashboard)
+# [Kenzie Codewars 👾](https://codewars-kenzie-sql.vercel.app/)
 
 ### API com foco no armazenamento de honors do site Codewars para os alunos da Kenzie Academy Brasil... tendo assim, acesso à progressão dos alunos.
 
