@@ -1,6 +1,6 @@
 # [Kenzie Codewars 👾](https://codewars-kenzie-xi.vercel.app/dashboard)
 
-### API com foco no armazenamento de honors do site Codewars para os alunos da Kenzie Academy Brasil. Assim, conseguimos ter acesso a progressão dos alunos.
+### API com foco no armazenamento de honors do site Codewars para os alunos da Kenzie Academy Brasil... tendo assim, acesso à progressão dos alunos.
 
 #### Projeto concluído ✔️
 
