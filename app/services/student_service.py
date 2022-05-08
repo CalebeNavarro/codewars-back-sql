@@ -5,6 +5,8 @@ from app.exceptions import StudentNotFound
 
 from app.services import UsersServices
 
+from app.models.honor_model import Honor
+
 
 class StudentServices:
   @staticmethod
@@ -28,6 +30,7 @@ class StudentServices:
 
   @staticmethod
   def delete_student(user_id: int) -> None:
+    User.delete_honors(user_id)
     User.delete_user(user_id)
 
   @staticmethod

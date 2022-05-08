@@ -10,7 +10,6 @@ from app.models.honor_model import Honor
 from dataclasses import dataclass
 from hmac import compare_digest
 
-from flask_jwt_extended import current_user, jwt_required
 
 @dataclass
 class User(Base):
@@ -20,7 +19,6 @@ class User(Base):
   current_honor: int
   email: str
   email_approved: bool
-
 
   __tablename__ = 'user'
 
@@ -48,6 +46,13 @@ class User(Base):
 
   def verify_password(self, password):
     return check_password_hash(self.password_check, password)
+
+  @staticmethod
+  def delete_honors(user_id):
+    with session() as s:
+      stmt = delete(Honor).where(Honor.user_id == user_id)
+      s.execute(stmt)
+      s.commit()
 
   @staticmethod
   def get_honors(user_id: int) -> Honor:

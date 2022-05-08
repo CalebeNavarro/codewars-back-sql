@@ -22,9 +22,12 @@ class Student(Resource):
     if request.json.get("email_approved", None):
       return {"message": "email_approved is not allowed by user"}, 400
 
-    data_response = GoogleServices.validate_human(data["token"])
-    if not data_response["success"]:
-      return {"message": "Invalid captcha"}
+    if not data.get("token", None):
+      return {"message": "captcha token is just generated in https://codewars-kenzie-sql.vercel.app"}
+
+    data_result = GoogleServices.validate_human(data["token"])
+    if not data_result["access"]:
+      return {"message": "Invalid captcha!"}
 
     del data["token"]
     try:
