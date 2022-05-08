@@ -26,7 +26,7 @@ class Student(Resource):
       return {"message": "captcha token is just generated in https://codewars-kenzie-sql.vercel.app"}
 
     data_result = GoogleServices.validate_human(data["token"])
-    if not data_result["access"]:
+    if not data_result["success"]:
       return {"message": "Invalid captcha!"}
 
     del data["token"]
